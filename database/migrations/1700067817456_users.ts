@@ -11,7 +11,7 @@ export default class extends BaseSchema {
       table.string('name', 255).notNullable()
       table.enum('role', Object.values(UserRole)).defaultTo(UserRole.CLIENT).notNullable()
       table.string('password', 180).notNullable()
-      table.string('password_reset_token', 10).nullable()
+      table.string('password_reset_token', 6).nullable()
       table.string('remember_me_token').nullable()
 
       /**

@@ -44,7 +44,7 @@ export default class ValidationExceptionReporter implements ErrorReporterContrac
     })
 
     if (this.bail) {
-      throw new this.toError()
+      this.toError()
     }
   }
 

@@ -1,9 +1,23 @@
+import type { LoginResponseBody } from 'App/Contracts/Auth'
 import type { HttpContextContract } from 'App/Contracts/Common'
 import LoginValidator from 'App/Validators/Auth/LoginValidator'
+import AuthService from 'App/Services/AuthService'
+import { UserRole } from 'App/Contracts/Users'
 
 export default class AuthController {
-  public async login(ctx: HttpContextContract): Promise<any> {
-    const result = await ctx.request.validate(LoginValidator)
-    return result
+  private readonly authService = new AuthService()
+
+  public async clientLogin(ctx: HttpContextContract): Promise<LoginResponseBody> {
+    await ctx.request.validate(LoginValidator)
+    return this.authService.login(ctx, UserRole.CLIENT)
+  }
+
+  public async adminLogin(ctx: HttpContextContract): Promise<LoginResponseBody> {
+    await ctx.request.validate(LoginValidator)
+    return this.authService.login(ctx, UserRole.ADMIN)
+  }
+
+  public async logout(ctx: HttpContextContract): Promise<void> {
+    await this.authService.logout(ctx)
   }
 }

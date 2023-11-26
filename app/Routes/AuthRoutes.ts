@@ -8,7 +8,7 @@ Route.group(() => {
 }).prefix('auth')
 
 Route.group(() => {
-  Route.post('/logout', `${c}.logout`)
+  Route.get('/logout', `${c}.logout`)
 })
   .prefix('auth')
   .middleware('auth')

@@ -1,20 +1,17 @@
 import type { ErrorReporterContract, MessagesBagContract } from '@ioc:Adonis/Core/Validator'
 import { ValidationException } from '@ioc:Adonis/Core/Validator'
 
-type ValidationError = {
-  message: string
-  field: string
-}
+type ValidationErrors = Record<string, string | string[]>
 
 type ErrorBody = {
   message: string
-  validationErrors: ValidationError[]
+  validationErrors: ValidationErrors
   code: string
 }
 
 export default class ValidationExceptionReporter implements ErrorReporterContract<ErrorBody> {
   public hasErrors: boolean
-  private validationErrors: ValidationError[] = []
+  private validationErrors: ValidationErrors = {}
 
   constructor(
     private messages: MessagesBagContract,
@@ -38,9 +35,8 @@ export default class ValidationExceptionReporter implements ErrorReporterContrac
       args
     )
 
-    this.validationErrors.push({
-      message: errorMessage,
-      field: pointer,
+    Object.assign(this.validationErrors, {
+      [pointer]: errorMessage,
     })
 
     if (this.bail) {

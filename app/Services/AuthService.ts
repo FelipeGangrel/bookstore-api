@@ -8,30 +8,36 @@ export default class AuthService {
     const { auth, request } = ctx
     const { email, password } = request.body()
 
-    const { token, user } = await auth.use('api').attempt(email, password, {
-      expiresIn: '1 days',
-    })
+    try {
+      const { token, user } = await auth.use('api').attempt(email, password, {
+        expiresIn: '1 days',
+      })
 
-    if (!user || user.deletedAt !== null) {
+      if (user.deletedAt !== null) {
+        throw new AuthorizationException({
+          message: 'User is deactivated',
+        })
+      }
+
+      if (role && user.role !== role) {
+        throw new AuthorizationException({
+          message: 'You cannot access this resource',
+        })
+      }
+
+      return {
+        jwt: token,
+        user: {
+          id: user.id,
+          email: user.email,
+          name: user.name,
+          role: user.role,
+        },
+      }
+    } catch (error) {
       throw new AuthorizationException({
         message: 'Invalid credentials',
       })
-    }
-
-    if (role && user.role !== role) {
-      throw new AuthorizationException({
-        message: 'You cannot access this resource',
-      })
-    }
-
-    return {
-      token,
-      user: {
-        id: user.id,
-        email: user.email,
-        name: user.name,
-        role: user.role,
-      },
     }
   }
 

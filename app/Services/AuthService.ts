@@ -43,6 +43,6 @@ export default class AuthService {
 
   public async logout(ctx: HttpContextContract): Promise<void> {
     const { auth } = ctx
-    await auth.use('api').logout()
+    await auth.use('api').revoke()
   }
 }

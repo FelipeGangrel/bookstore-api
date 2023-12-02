@@ -2,10 +2,13 @@ import Mail from '@ioc:Adonis/Addons/Mail'
 import AuthorizationException from 'App/Exceptions/AuthorizationException'
 import User from 'App/Models/User'
 import type { PasswordResetStep1Schema } from 'App/Validators/Auth/PasswordResetStep1Validator'
+import type { PasswordResetStep2Schema } from 'App/Validators/Auth/PasswordResetStep2Validator'
 
 export default class PasswordResetService {
-  public async generateToken({ email }: PasswordResetStep1Schema): Promise<void> {
+  public async generateToken(payload: PasswordResetStep1Schema): Promise<void> {
     try {
+      const { email } = payload
+
       const user = await User.query().where({ email, deletedAt: null }).firstOrFail()
 
       const token = this.generateNumericToken(6)
@@ -29,6 +32,21 @@ export default class PasswordResetService {
     } catch (error) {
       throw new AuthorizationException({ message: 'User not found' })
     }
+  }
+
+  public async resetPassword(payload: PasswordResetStep2Schema): Promise<void> {
+    const { email, token, password } = payload
+
+    const user = await User.query()
+      .where({ email, passwordResetToken: token, deletedAt: null })
+      .firstOrFail()
+
+    user.merge({
+      password,
+      passwordResetToken: null,
+    })
+
+    await user.save()
   }
 
   private generateNumericToken(length: number): string {

@@ -34,7 +34,7 @@ export default class PasswordResetService {
     }
   }
 
-  public async resetPassword(payload: PasswordResetStep2Schema): Promise<void> {
+  public async updatePassword(payload: PasswordResetStep2Schema): Promise<void> {
     const { email, token, password } = payload
 
     const user = await User.query()

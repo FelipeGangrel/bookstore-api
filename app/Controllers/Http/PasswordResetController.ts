@@ -11,8 +11,8 @@ export default class PasswordResetController {
     return this.passwordResetService.generateToken(data)
   }
 
-  public async resetPassword(ctx: HttpContextContract) {
+  public async updatePassword(ctx: HttpContextContract) {
     const data = await ctx.request.validate(PasswordResetStep2Validator)
-    return this.passwordResetService.resetPassword(data)
+    return this.passwordResetService.updatePassword(data)
   }
 }

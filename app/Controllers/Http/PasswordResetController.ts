@@ -9,12 +9,12 @@ export default class PasswordResetController {
   public async generateToken(ctx: HttpContextContract) {
     const data = await ctx.request.validate(PasswordResetStep1Validator)
     await this.passwordResetService.generateToken(data)
-    return ctx.response.json({ message: 'Password reset token generated successfully' })
+    return ctx.response.json({ message: 'Código para recuperação de senha gerado com sucesso' })
   }
 
   public async updatePassword(ctx: HttpContextContract) {
     const data = await ctx.request.validate(PasswordResetStep2Validator)
     await this.passwordResetService.updatePassword(data)
-    return ctx.response.json({ message: 'Password updated successfully' })
+    return ctx.response.json({ message: 'senha atualizada com sucesso' })
   }
 }

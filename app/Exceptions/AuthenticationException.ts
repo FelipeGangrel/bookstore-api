@@ -7,12 +7,12 @@ type ConstructorProps = {
   code?: string
 }
 
-export default class AuthorizationException extends Exception {
+export default class AuthenticationException extends Exception {
   constructor(props: ConstructorProps = {}) {
     super(
-      props.message || 'Authorization Error',
+      props.message || 'Erro de autenticação',
       props.status || 401,
-      props.code || 'E_AUTHORIZATION_FAILURE'
+      props.code || 'E_AUTHENTICATION_FAILURE'
     )
   }
 

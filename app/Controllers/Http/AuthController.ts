@@ -18,6 +18,6 @@ export default class AuthController {
 
   public async logout(ctx: HttpContextContract) {
     await this.authService.logout(ctx)
-    return ctx.response.json({ message: 'Logged out successfully' })
+    return ctx.response.json({ message: 'Até mais' })
   }
 }

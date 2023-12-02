@@ -1,5 +1,5 @@
 import Mail from '@ioc:Adonis/Addons/Mail'
-import AuthorizationException from 'App/Exceptions/AuthorizationException'
+import AuthenticationException from 'App/Exceptions/AuthenticationException'
 import User from 'App/Models/User'
 import type { PasswordResetStep1Schema } from 'App/Validators/Auth/PasswordResetStep1Validator'
 import type { PasswordResetStep2Schema } from 'App/Validators/Auth/PasswordResetStep2Validator'
@@ -30,7 +30,7 @@ export default class PasswordResetService {
 
       await user.save()
     } catch (error) {
-      throw new AuthorizationException({ message: 'User not found' })
+      throw new AuthenticationException({ message: 'User not found' })
     }
   }
 
@@ -49,7 +49,9 @@ export default class PasswordResetService {
 
       await user.save()
     } catch (error) {
-      throw new AuthorizationException({ message: 'Please double check your password reset token' })
+      throw new AuthenticationException({
+        message: 'Confira o código de recuperação de senha enviado para o seu e-mail',
+      })
     }
   }
 

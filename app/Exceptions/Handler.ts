@@ -18,7 +18,7 @@ import HttpExceptionHandler from '@ioc:Adonis/Core/HttpExceptionHandler'
 import { ValidationException as CoreValidationException } from '@ioc:Adonis/Core/Validator'
 import type { HttpContextContract } from 'App/Contracts/Common'
 import ValidationException from './ValidationException'
-import AuthorizationException from './AuthorizationException'
+import AuthenticationException from './AuthenticationException'
 
 export default class ExceptionHandler extends HttpExceptionHandler {
   constructor() {
@@ -34,12 +34,12 @@ export default class ExceptionHandler extends HttpExceptionHandler {
       return error.handle(error, ctx)
     }
 
-    if (error instanceof AuthorizationException) {
+    if (error instanceof AuthenticationException) {
       return error.handle(error, ctx)
     }
 
     ctx.response.status(error.status || 500).send({
-      message: error.message || 'Internal Server Error',
+      message: error.message || 'Erro interno do servidor',
       code: error.code || 'E_INTERNAL_SERVER_ERROR',
     })
   }

@@ -1,7 +1,7 @@
 import { LoginResponseBody } from 'App/Contracts/Auth'
 import { HttpContextContract } from 'App/Contracts/Common'
 import { UserRole } from 'App/Contracts/Users'
-import AuthorizationException from 'App/Exceptions/AuthorizationException'
+import AuthenticationException from 'App/Exceptions/AuthenticationException'
 
 export default class AuthService {
   public async login(ctx: HttpContextContract, role?: UserRole): Promise<LoginResponseBody> {
@@ -14,14 +14,14 @@ export default class AuthService {
       })
 
       if (user.deletedAt !== null) {
-        throw new AuthorizationException({
-          message: 'User is deactivated',
+        throw new AuthenticationException({
+          message: 'O usuário foi desativado',
         })
       }
 
       if (role && user.role !== role) {
-        throw new AuthorizationException({
-          message: 'You cannot access this resource',
+        throw new AuthenticationException({
+          message: 'Você não tem permissão para acessar este recurso',
         })
       }
 
@@ -35,8 +35,8 @@ export default class AuthService {
         },
       }
     } catch (error) {
-      throw new AuthorizationException({
-        message: 'Invalid credentials',
+      throw new AuthenticationException({
+        message: 'Credenciais inválidas',
       })
     }
   }

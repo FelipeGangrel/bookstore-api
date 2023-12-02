@@ -20,3 +20,6 @@ export default class PasswordResetStep2Validator {
     'token.required': 'Informe o token de recuperação de senha',
   }
 }
+
+export type PasswordResetStep2Schema =
+  (typeof PasswordResetStep2Validator.prototype.schema)['props']

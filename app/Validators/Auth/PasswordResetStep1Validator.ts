@@ -16,3 +16,6 @@ export default class PasswordResetStep1Validator {
     'email.email': 'Informe um e-mail válido',
   }
 }
+
+export type PasswordResetStep1Schema =
+  (typeof PasswordResetStep1Validator.prototype.schema)['props']

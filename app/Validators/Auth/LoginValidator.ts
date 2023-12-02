@@ -18,3 +18,5 @@ export default class LoginValidator {
     'password.required': 'Informe sua senha',
   }
 }
+
+export type LoginSchema = (typeof LoginValidator.prototype.schema)['props']

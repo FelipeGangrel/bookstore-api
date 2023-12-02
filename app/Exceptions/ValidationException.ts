@@ -13,7 +13,7 @@ type ConstructorProps = {
 export default class ValidationException extends Exception {
   private readonly validationErrors: ValidationErrors
 
-  constructor(props: ConstructorProps) {
+  constructor(props: ConstructorProps = {}) {
     super(
       props.message || 'Validation Error',
       props.status || 403,

@@ -17,5 +17,4 @@ export default class PasswordResetStep1Validator {
   }
 }
 
-export type PasswordResetStep1Schema =
-  (typeof PasswordResetStep1Validator.prototype.schema)['props']
+export type PasswordResetStep1Schema = typeof PasswordResetStep1Validator.prototype.schema.props

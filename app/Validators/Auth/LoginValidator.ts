@@ -19,4 +19,4 @@ export default class LoginValidator {
   }
 }
 
-export type LoginSchema = (typeof LoginValidator.prototype.schema)['props']
+export type LoginSchema = typeof LoginValidator.prototype.schema.props

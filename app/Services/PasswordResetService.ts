@@ -35,18 +35,22 @@ export default class PasswordResetService {
   }
 
   public async updatePassword(payload: PasswordResetStep2Schema): Promise<void> {
-    const { email, token, password } = payload
+    try {
+      const { email, token, password } = payload
 
-    const user = await User.query()
-      .where({ email, passwordResetToken: token, deletedAt: null })
-      .firstOrFail()
+      const user = await User.query()
+        .where({ email, passwordResetToken: token, deletedAt: null })
+        .firstOrFail()
 
-    user.merge({
-      password,
-      passwordResetToken: null,
-    })
+      user.merge({
+        password,
+        passwordResetToken: null,
+      })
 
-    await user.save()
+      await user.save()
+    } catch (error) {
+      throw new AuthorizationException({ message: 'Please double check your password reset token' })
+    }
   }
 
   private generateNumericToken(length: number): string {

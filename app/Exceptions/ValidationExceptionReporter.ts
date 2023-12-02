@@ -30,7 +30,7 @@ export default class ValidationExceptionReporter implements ErrorReporterContrac
     const errorMessage = this.messages.get(
       pointer,
       rule,
-      message || `${pointer} field is invalid`,
+      message || `O campo ${pointer} é inválido`,
       arrayExpressionPointer,
       args
     )
@@ -50,7 +50,7 @@ export default class ValidationExceptionReporter implements ErrorReporterContrac
 
   public toJSON(): ErrorBody {
     return {
-      message: 'Your form has validation errors',
+      message: 'Seu formulário contém erros de validação',
       validationErrors: this.validationErrors,
       code: 'E_VALIDATION_FAILURE',
     }

@@ -13,7 +13,7 @@ export type PaginationMeta = {
   previousPageUrl: string | null
 }
 
-export type PaginatedResponse = {
+export type PaginatedData = {
   meta: PaginationMeta
   data: ModelObject[]
 }
@@ -23,6 +23,7 @@ export type PropsWithFindMany<T extends Record<string, unknown> = {}> = T & {
   limit?: number
   orderBy?: string
   direction?: 'asc' | 'desc'
+  search?: string
 }
 
 export type ExtractSchemaProps<T> = T extends { schema: { props: infer U } } ? U : never

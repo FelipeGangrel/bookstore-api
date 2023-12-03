@@ -1,9 +1,10 @@
+import { HasManyThrough, column, hasManyThrough } from '@ioc:Adonis/Lucid/Orm'
 import { DateTime } from 'luxon'
-import { BaseModel, HasManyThrough, column, hasManyThrough } from '@ioc:Adonis/Lucid/Orm'
+import AppBaseModel from './AppBaseModel'
 import Product from './Product'
 import ProductGenre from './ProductGenre'
 
-export default class Genre extends BaseModel {
+export default class Genre extends AppBaseModel {
   @column({ isPrimary: true })
   public id: number
 

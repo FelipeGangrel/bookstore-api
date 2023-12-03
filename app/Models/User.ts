@@ -1,9 +1,10 @@
-import { DateTime } from 'luxon'
 import Hash from '@ioc:Adonis/Core/Hash'
-import { column, beforeSave, BaseModel } from '@ioc:Adonis/Lucid/Orm'
+import { beforeSave, column } from '@ioc:Adonis/Lucid/Orm'
 import { UserRole } from 'App/Contracts/User'
+import { DateTime } from 'luxon'
+import AppBaseModel from './AppBaseModel'
 
-export default class User extends BaseModel {
+export default class User extends AppBaseModel {
   @column({ isPrimary: true })
   public id: number
 

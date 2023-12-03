@@ -18,9 +18,11 @@ export type PaginatedResponse = {
   data: ModelObject[]
 }
 
-export type WithPaginationParams<T extends Record<string, unknown> = {}> = T & {
+export type PropsWithFindMany<T extends Record<string, unknown> = {}> = T & {
   page?: number
   limit?: number
   orderBy?: string
   direction?: 'asc' | 'desc'
 }
+
+export type ExtractSchemaProps<T> = T extends { schema: { props: infer U } } ? U : never

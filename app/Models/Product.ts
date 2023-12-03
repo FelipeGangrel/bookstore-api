@@ -2,6 +2,8 @@ import { DateTime } from 'luxon'
 import { BaseModel, HasManyThrough, column, hasManyThrough } from '@ioc:Adonis/Lucid/Orm'
 import Category from './Category'
 import ProductCategory from './ProductCategory'
+import ProductGenre from './ProductGenre'
+import Genre from './Genre'
 
 export default class Product extends BaseModel {
   @column({ isPrimary: true })
@@ -29,4 +31,7 @@ export default class Product extends BaseModel {
 
   @hasManyThrough([() => Category, () => ProductCategory])
   public categories: HasManyThrough<typeof Category>
+
+  @hasManyThrough([() => Category, () => ProductGenre])
+  public genres: HasManyThrough<typeof Genre>
 }

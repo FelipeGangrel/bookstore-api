@@ -21,5 +21,3 @@ export default class RegisterUserValidator {
     'password.required': 'Informe sua senha',
   }
 }
-
-export type RegisterUserValidatorSchema = typeof RegisterUserValidator.prototype.schema.props

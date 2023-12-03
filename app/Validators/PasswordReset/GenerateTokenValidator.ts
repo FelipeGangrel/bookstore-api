@@ -2,7 +2,7 @@ import { schema, CustomMessages, rules } from '@ioc:Adonis/Core/Validator'
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import ValidationExceptionReporter from 'App/Exceptions/ValidationExceptionReporter'
 
-export default class PasswordResetStep1Validator {
+export default class GenerateTokenValidator {
   constructor(protected ctx: HttpContextContract) {}
 
   public reporter = ValidationExceptionReporter
@@ -16,5 +16,3 @@ export default class PasswordResetStep1Validator {
     'email.email': 'Informe um e-mail válido',
   }
 }
-
-export type PasswordResetStep1Schema = typeof PasswordResetStep1Validator.prototype.schema.props

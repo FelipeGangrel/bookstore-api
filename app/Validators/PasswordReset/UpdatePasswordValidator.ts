@@ -2,7 +2,7 @@ import { schema, CustomMessages, rules } from '@ioc:Adonis/Core/Validator'
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import ValidationExceptionReporter from 'App/Exceptions/ValidationExceptionReporter'
 
-export default class PasswordResetStep2Validator {
+export default class UpdatePasswordValidator {
   constructor(protected ctx: HttpContextContract) {}
 
   public reporter = ValidationExceptionReporter
@@ -20,5 +20,3 @@ export default class PasswordResetStep2Validator {
     'token.required': 'Informe o token de recuperação de senha',
   }
 }
-
-export type PasswordResetStep2Schema = typeof PasswordResetStep2Validator.prototype.schema.props

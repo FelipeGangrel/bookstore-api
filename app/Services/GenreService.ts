@@ -1,5 +1,5 @@
 import { PaginatedData } from 'App/Contracts/Common'
-import { FindGenres } from 'App/Contracts/Genre'
+import { CreateGenreSchema, FindGenres, UpdateGenreSchema } from 'App/Contracts/Genre'
 import Genre from 'App/Models/Genre'
 
 export default class GenreService {
@@ -22,11 +22,11 @@ export default class GenreService {
     return await Genre.findOrFail(id)
   }
 
-  public async createGenre(data: Genre) {
+  public async createGenre(data: CreateGenreSchema) {
     return await Genre.create(data)
   }
 
-  public async updateGenre(id: number, data: Partial<Genre>) {
+  public async updateGenre(id: number, data: UpdateGenreSchema) {
     const genre = await Genre.findOrFail(id)
     genre.merge(data)
     await genre.save()

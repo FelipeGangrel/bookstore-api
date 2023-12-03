@@ -2,11 +2,11 @@ import { RegisterUserSchema, UserRole } from 'App/Contracts/User'
 import User from 'App/Models/User'
 
 export default class UserService {
-  public async registerUser(payload: RegisterUserSchema, role?: UserRole): Promise<User> {
+  public async registerUser(data: RegisterUserSchema, role?: UserRole): Promise<User> {
     const user = await User.create({
-      name: payload.name,
-      email: payload.email,
-      password: payload.password,
+      name: data.name,
+      email: data.email,
+      password: data.password,
       role: role || UserRole.CLIENT,
     })
 

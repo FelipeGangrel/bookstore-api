@@ -4,9 +4,9 @@ import AuthenticationException from 'App/Exceptions/AuthenticationException'
 import User from 'App/Models/User'
 
 export default class PasswordResetService {
-  public async generateToken(payload: GenerateTokenSchema): Promise<void> {
+  public async generateToken(data: GenerateTokenSchema): Promise<void> {
     try {
-      const { email } = payload
+      const { email } = data
 
       const user = await User.query().where({ email, deletedAt: null }).firstOrFail()
 
@@ -33,9 +33,9 @@ export default class PasswordResetService {
     }
   }
 
-  public async updatePassword(payload: UpdatePasswordSchema): Promise<void> {
+  public async updatePassword(data: UpdatePasswordSchema): Promise<void> {
     try {
-      const { email, token, password } = payload
+      const { email, token, password } = data
 
       const user = await User.query()
         .where({ email, passwordResetToken: token, deletedAt: null })

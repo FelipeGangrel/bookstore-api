@@ -1,20 +1,9 @@
+import type { SimplePaginatorMetaKeys } from '@ioc:Adonis/Lucid/Database'
 import type { ModelObject } from '@ioc:Adonis/Lucid/Orm'
 export type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
-export type PaginationMeta = {
-  total: number
-  perPage: number
-  currentPage: number
-  lastPage: number
-  firstPage: number
-  firstPageUrl: string
-  lastPageUrl: string
-  nextPageUrl: string | null
-  previousPageUrl: string | null
-}
-
 export type PaginatedData = {
-  meta: PaginationMeta
+  meta: SimplePaginatorMetaKeys
   data: ModelObject[]
 }
 

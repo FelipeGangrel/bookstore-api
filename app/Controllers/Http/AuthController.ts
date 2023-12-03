@@ -8,12 +8,14 @@ export default class AuthController {
 
   public async clientLogin(ctx: HttpContextContract) {
     await ctx.request.validate(LoginValidator)
-    return this.authService.login(ctx, UserRole.CLIENT)
+    const resData = await this.authService.login(ctx, UserRole.CLIENT)
+    return ctx.response.json(resData)
   }
 
   public async adminLogin(ctx: HttpContextContract) {
     await ctx.request.validate(LoginValidator)
-    return this.authService.login(ctx, UserRole.ADMIN)
+    const resData = await this.authService.login(ctx, UserRole.ADMIN)
+    return ctx.response.json(resData)
   }
 
   public async logout(ctx: HttpContextContract) {

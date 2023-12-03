@@ -7,12 +7,14 @@ export default class UserController {
   private readonly userService = new UserService()
 
   public async registerClient(ctx: HttpContextContract) {
-    const data = await ctx.request.validate(RegisterUserValidator)
-    return this.userService.registerUser(data, UserRole.CLIENT)
+    const reqData = await ctx.request.validate(RegisterUserValidator)
+    const resData = await this.userService.registerUser(reqData, UserRole.CLIENT)
+    return ctx.response.json(resData)
   }
 
   public async registerAdmin(ctx: HttpContextContract) {
-    const data = await ctx.request.validate(RegisterUserValidator)
-    return this.userService.registerUser(data, UserRole.ADMIN)
+    const reqData = await ctx.request.validate(RegisterUserValidator)
+    const resData = await this.userService.registerUser(reqData, UserRole.ADMIN)
+    return ctx.response.json(resData)
   }
 }

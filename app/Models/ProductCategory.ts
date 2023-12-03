@@ -10,18 +10,20 @@ export default class ProductCategory extends BaseModel {
   @column()
   public productId: number
 
-  @belongsTo(() => Product)
-  public product: BelongsTo<typeof Product>
-
   @column()
   public categoryId: number
-
-  @belongsTo(() => Category)
-  public category: BelongsTo<typeof Category>
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
+
+  /** Relationships */
+
+  @belongsTo(() => Product)
+  public product: BelongsTo<typeof Product>
+
+  @belongsTo(() => Category)
+  public category: BelongsTo<typeof Category>
 }

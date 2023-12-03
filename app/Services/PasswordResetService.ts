@@ -1,11 +1,10 @@
 import Mail from '@ioc:Adonis/Addons/Mail'
+import { GenerateTokenSchema, UpdatePasswordSchema } from 'App/Contracts/PasswordReset'
 import AuthenticationException from 'App/Exceptions/AuthenticationException'
 import User from 'App/Models/User'
-import type { PasswordResetStep1Schema } from 'App/Validators/Auth/PasswordResetStep1Validator'
-import type { PasswordResetStep2Schema } from 'App/Validators/Auth/PasswordResetStep2Validator'
 
 export default class PasswordResetService {
-  public async generateToken(payload: PasswordResetStep1Schema): Promise<void> {
+  public async generateToken(payload: GenerateTokenSchema): Promise<void> {
     try {
       const { email } = payload
 
@@ -34,7 +33,7 @@ export default class PasswordResetService {
     }
   }
 
-  public async updatePassword(payload: PasswordResetStep2Schema): Promise<void> {
+  public async updatePassword(payload: UpdatePasswordSchema): Promise<void> {
     try {
       const { email, token, password } = payload
 

@@ -7,7 +7,6 @@ export enum UserRole {
 }
 
 export type FindUsers = PropsWithFindMany<{
-  search?: string
   role?: string
 }>
 

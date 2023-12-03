@@ -17,6 +17,6 @@ const genres: Partial<Genre>[] = [
 export default class extends BaseSeeder {
   public async run() {
     await Genre.truncate()
-    await GenreFactory.merge(genres)
+    await GenreFactory.merge(genres).createMany(genres.length)
   }
 }

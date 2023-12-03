@@ -14,6 +14,6 @@ const categories: Partial<Category>[] = [
 export default class extends BaseSeeder {
   public async run() {
     await Category.truncate()
-    await CategoryFactory.merge(categories)
+    await CategoryFactory.merge(categories).createMany(categories.length)
   }
 }

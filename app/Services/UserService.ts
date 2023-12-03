@@ -1,4 +1,4 @@
-import { RegisterUserSchema, UserRole } from 'App/Contracts/Users'
+import { RegisterUserSchema, UserRole } from 'App/Contracts/User'
 import User from 'App/Models/User'
 
 export default class UserService {

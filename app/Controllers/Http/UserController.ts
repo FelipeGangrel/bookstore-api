@@ -1,5 +1,5 @@
 import { HttpContextContract } from 'App/Contracts/Common'
-import { UserRole } from 'App/Contracts/Users'
+import { UserRole } from 'App/Contracts/User'
 import UserService from 'App/Services/UserService'
 import RegisterUserValidator from 'App/Validators/User/RegisterUserValidator'
 

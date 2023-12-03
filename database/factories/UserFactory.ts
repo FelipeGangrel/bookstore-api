@@ -1,6 +1,6 @@
 import User from 'App/Models/User'
 import Factory from '@ioc:Adonis/Lucid/Factory'
-import { UserRole } from 'App/Contracts/Users'
+import { UserRole } from 'App/Contracts/User'
 
 export default Factory.define(User, ({ faker }) => {
   const firstName = faker.person.firstName()

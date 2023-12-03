@@ -1,5 +1,5 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import { UserRole } from 'App/Contracts/Users'
+import { UserRole } from 'App/Contracts/User'
 import AuthenticationException from 'App/Exceptions/AuthenticationException'
 
 export default class AdminGuard {

@@ -1,5 +1,7 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, HasManyThrough, column, hasManyThrough } from '@ioc:Adonis/Lucid/Orm'
+import Category from './Category'
+import ProductCategory from './ProductCategory'
 
 export default class Product extends BaseModel {
   @column({ isPrimary: true })
@@ -22,4 +24,9 @@ export default class Product extends BaseModel {
 
   @column.dateTime()
   public deletedAt: DateTime | null
+
+  /** Relationships */
+
+  @hasManyThrough([() => Category, () => ProductCategory])
+  public categories: HasManyThrough<typeof Category>
 }
